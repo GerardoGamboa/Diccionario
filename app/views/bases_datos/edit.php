@@ -12,7 +12,6 @@
             <span class="invalid-feedback"><?php echo $data['servidor_id_err']; ?></span>
         </div>
         <div class="mb-3"><label>Nombre: <sup>*</sup></label><input type="text" name="nombre" class="form-control <?php echo (!empty($data['nombre_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['nombre']; ?>"><span class="invalid-feedback"><?php echo $data['nombre_err']; ?></span></div>
-        <div class="mb-3"><label>Motor:</label><input type="text" name="motor" class="form-control" value="<?php echo $data['motor']; ?>"></div>
         <div class="mb-3"><label>Descripción:</label><textarea name="descripcion" class="form-control"><?php echo $data['descripcion']; ?></textarea></div>
         <input type="submit" class="btn btn-success" value="Actualizar">
     </form>

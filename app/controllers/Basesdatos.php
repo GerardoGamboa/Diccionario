@@ -18,7 +18,6 @@ class Basesdatos extends Controller {
             $data = [
                 'servidor_id' => trim($_POST['servidor_id']),
                 'nombre' => trim($_POST['nombre']),
-                'motor' => trim($_POST['motor']),
                 'descripcion' => trim($_POST['descripcion']),
                 'user_id' => $_SESSION['user_id'],
                 'servidor_id_err' => '',
@@ -37,7 +36,7 @@ class Basesdatos extends Controller {
             }
         } else {
             $servidores = $this->servidorModel->getServidores();
-            $data = ['servidores' => $servidores, 'servidor_id' => '', 'nombre' => '', 'motor' => '', 'descripcion' => ''];
+            $data = ['servidores' => $servidores, 'servidor_id' => '', 'nombre' => '', 'descripcion' => '', 'servidor_id_err' => '', 'nombre_err' => ''];
             $this->view('bases_datos/add', $data);
         }
     }
@@ -49,7 +48,6 @@ class Basesdatos extends Controller {
                 'id' => $id,
                 'servidor_id' => trim($_POST['servidor_id']),
                 'nombre' => trim($_POST['nombre']),
-                'motor' => trim($_POST['motor']),
                 'descripcion' => trim($_POST['descripcion']),
                 'servidor_id_err' => '',
                 'nombre_err' => ''
@@ -68,7 +66,7 @@ class Basesdatos extends Controller {
         } else {
             $base = $this->bdModel->getBaseDatosById($id);
             $servidores = $this->servidorModel->getServidores();
-            $data = ['id' => $id, 'servidores' => $servidores, 'servidor_id' => $base->servidor_id, 'nombre' => $base->nombre, 'motor' => $base->motor, 'descripcion' => $base->descripcion];
+            $data = ['id' => $id, 'servidores' => $servidores, 'servidor_id' => $base->servidor_id, 'nombre' => $base->nombre, 'descripcion' => $base->descripcion, 'servidor_id_err' => '', 'nombre_err' => ''];
             $this->view('bases_datos/edit', $data);
         }
     }

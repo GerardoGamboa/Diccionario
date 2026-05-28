@@ -11,11 +11,11 @@ class Disparador {
         return $this->db->resultSet();
     }
     public function addDisparador($data) {
-        $this->db->query('INSERT INTO disparadores (tabla_id, nombre, evento, definicion, descripcion, usuario_creador) VALUES (:tabla_id, :nombre, :evento, :definicion, :descripcion, :usuario_creador)');
+        $this->db->query('INSERT INTO disparadores (tabla_id, nombre, evento, codigo, descripcion, usuario_creador) VALUES (:tabla_id, :nombre, :evento, :codigo, :descripcion, :usuario_creador)');
         $this->db->bind(':tabla_id', $data['tabla_id']);
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':evento', $data['evento']);
-        $this->db->bind(':definicion', $data['definicion']);
+        $this->db->bind(':codigo', $data['codigo']);
         $this->db->bind(':descripcion', $data['descripcion']);
         $this->db->bind(':usuario_creador', $data['user_id']);
         return $this->db->execute();
@@ -26,12 +26,12 @@ class Disparador {
         return $this->db->single();
     }
     public function updateDisparador($data) {
-        $this->db->query('UPDATE disparadores SET tabla_id = :tabla_id, nombre = :nombre, evento = :evento, definicion = :definicion, descripcion = :descripcion WHERE id = :id');
+        $this->db->query('UPDATE disparadores SET tabla_id = :tabla_id, nombre = :nombre, evento = :evento, codigo = :codigo, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':tabla_id', $data['tabla_id']);
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':evento', $data['evento']);
-        $this->db->bind(':definicion', $data['definicion']);
+        $this->db->bind(':codigo', $data['codigo']);
         $this->db->bind(':descripcion', $data['descripcion']);
         return $this->db->execute();
     }

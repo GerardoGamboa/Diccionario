@@ -15,11 +15,12 @@ class Servidor {
     }
 
     public function addServidor($data) {
-        $this->db->query('INSERT INTO servidores (nombre, ip, puerto, descripcion, usuario_creador)
-                          VALUES (:nombre, :ip, :puerto, :descripcion, :usuario_creador)');
+        $this->db->query('INSERT INTO servidores (nombre, ip, puerto, motor, descripcion, usuario_creador)
+                          VALUES (:nombre, :ip, :puerto, :motor, :descripcion, :usuario_creador)');
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':ip', $data['ip']);
         $this->db->bind(':puerto', $data['puerto']);
+        $this->db->bind(':motor', $data['motor']);
         $this->db->bind(':descripcion', $data['descripcion']);
         $this->db->bind(':usuario_creador', $data['user_id']);
         return $this->db->execute();
@@ -32,11 +33,12 @@ class Servidor {
     }
 
     public function updateServidor($data) {
-        $this->db->query('UPDATE servidores SET nombre = :nombre, ip = :ip, puerto = :puerto, descripcion = :descripcion WHERE id = :id');
+        $this->db->query('UPDATE servidores SET nombre = :nombre, ip = :ip, puerto = :puerto, motor = :motor, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':ip', $data['ip']);
         $this->db->bind(':puerto', $data['puerto']);
+        $this->db->bind(':motor', $data['motor']);
         $this->db->bind(':descripcion', $data['descripcion']);
         return $this->db->execute();
     }

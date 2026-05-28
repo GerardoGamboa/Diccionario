@@ -75,7 +75,7 @@
       $_SESSION['user_id'] = $user->id;
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_name'] = $user->name;
-      redirect('diccionario/index');
+      redirect('servidores/index');
     }
 
     public function logout(){

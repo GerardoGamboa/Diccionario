@@ -11,10 +11,10 @@ class Vista {
         return $this->db->resultSet();
     }
     public function addVista($data) {
-        $this->db->query('INSERT INTO vistas (base_datos_id, nombre, definicion, descripcion, usuario_creador) VALUES (:base_datos_id, :nombre, :definicion, :descripcion, :usuario_creador)');
+        $this->db->query('INSERT INTO vistas (base_datos_id, nombre, codigo, descripcion, usuario_creador) VALUES (:base_datos_id, :nombre, :codigo, :descripcion, :usuario_creador)');
         $this->db->bind(':base_datos_id', $data['base_datos_id']);
         $this->db->bind(':nombre', $data['nombre']);
-        $this->db->bind(':definicion', $data['definicion']);
+        $this->db->bind(':codigo', $data['codigo']);
         $this->db->bind(':descripcion', $data['descripcion']);
         $this->db->bind(':usuario_creador', $data['user_id']);
         return $this->db->execute();
@@ -25,11 +25,11 @@ class Vista {
         return $this->db->single();
     }
     public function updateVista($data) {
-        $this->db->query('UPDATE vistas SET base_datos_id = :base_datos_id, nombre = :nombre, definicion = :definicion, descripcion = :descripcion WHERE id = :id');
+        $this->db->query('UPDATE vistas SET base_datos_id = :base_datos_id, nombre = :nombre, codigo = :codigo, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':base_datos_id', $data['base_datos_id']);
         $this->db->bind(':nombre', $data['nombre']);
-        $this->db->bind(':definicion', $data['definicion']);
+        $this->db->bind(':codigo', $data['codigo']);
         $this->db->bind(':descripcion', $data['descripcion']);
         return $this->db->execute();
     }

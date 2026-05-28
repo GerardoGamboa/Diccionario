@@ -12,27 +12,27 @@ class Funciones extends Controller {
     public function add() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $data = ['base_datos_id' => trim($_POST['base_datos_id']), 'nombre' => trim($_POST['nombre']), 'definicion' => trim($_POST['definicion']), 'descripcion' => trim($_POST['descripcion']), 'user_id' => $_SESSION['user_id'], 'nombre_err' => ''];
+            $data = ['base_datos_id' => trim($_POST['base_datos_id']), 'nombre' => trim($_POST['nombre']), 'codigo' => trim($_POST['codigo']), 'descripcion' => trim($_POST['descripcion']), 'user_id' => $_SESSION['user_id'], 'nombre_err' => ''];
             if(empty($data['nombre'])) $data['nombre_err'] = 'Ingrese nombre';
             if(empty($data['nombre_err'])) {
                 if($this->funcModel->addFuncion($data)) { flash('msg', 'Función agregada'); redirect('funciones'); } else die('Error');
             } else { $data['bases'] = $this->bdModel->getBasesDatos(); $this->view('funciones/add', $data); }
         } else {
-            $data = ['bases' => $this->bdModel->getBasesDatos(), 'base_datos_id' => '', 'nombre' => '', 'definicion' => '', 'descripcion' => ''];
+            $data = ['bases' => $this->bdModel->getBasesDatos(), 'base_datos_id' => '', 'nombre' => '', 'codigo' => '', 'descripcion' => '', 'nombre_err' => ''];
             $this->view('funciones/add', $data);
         }
     }
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $data = ['id' => $id, 'base_datos_id' => trim($_POST['base_datos_id']), 'nombre' => trim($_POST['nombre']), 'definicion' => trim($_POST['definicion']), 'descripcion' => trim($_POST['descripcion']), 'nombre_err' => ''];
+            $data = ['id' => $id, 'base_datos_id' => trim($_POST['base_datos_id']), 'nombre' => trim($_POST['nombre']), 'codigo' => trim($_POST['codigo']), 'descripcion' => trim($_POST['descripcion']), 'nombre_err' => ''];
             if(empty($data['nombre'])) $data['nombre_err'] = 'Ingrese nombre';
             if(empty($data['nombre_err'])) {
                 if($this->funcModel->updateFuncion($data)) { flash('msg', 'Función actualizada'); redirect('funciones'); } else die('Error');
             } else { $data['bases'] = $this->bdModel->getBasesDatos(); $this->view('funciones/edit', $data); }
         } else {
             $func = $this->funcModel->getFuncionById($id);
-            $data = ['id' => $id, 'bases' => $this->bdModel->getBasesDatos(), 'base_datos_id' => $func->base_datos_id, 'nombre' => $func->nombre, 'definicion' => $func->definicion, 'descripcion' => $func->descripcion];
+            $data = ['id' => $id, 'bases' => $this->bdModel->getBasesDatos(), 'base_datos_id' => $func->base_datos_id, 'nombre' => $func->nombre, 'codigo' => $func->codigo, 'descripcion' => $func->descripcion, 'nombre_err' => ''];
             $this->view('funciones/edit', $data);
         }
     }

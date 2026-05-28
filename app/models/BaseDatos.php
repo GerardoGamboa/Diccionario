@@ -16,11 +16,10 @@ class BaseDatos {
     }
 
     public function addBaseDatos($data) {
-        $this->db->query('INSERT INTO bases_datos (servidor_id, nombre, motor, descripcion, usuario_creador)
-                          VALUES (:servidor_id, :nombre, :motor, :descripcion, :usuario_creador)');
+        $this->db->query('INSERT INTO bases_datos (servidor_id, nombre, descripcion, usuario_creador)
+                          VALUES (:servidor_id, :nombre, :descripcion, :usuario_creador)');
         $this->db->bind(':servidor_id', $data['servidor_id']);
         $this->db->bind(':nombre', $data['nombre']);
-        $this->db->bind(':motor', $data['motor']);
         $this->db->bind(':descripcion', $data['descripcion']);
         $this->db->bind(':usuario_creador', $data['user_id']);
         return $this->db->execute();
@@ -33,11 +32,10 @@ class BaseDatos {
     }
 
     public function updateBaseDatos($data) {
-        $this->db->query('UPDATE bases_datos SET servidor_id = :servidor_id, nombre = :nombre, motor = :motor, descripcion = :descripcion WHERE id = :id');
+        $this->db->query('UPDATE bases_datos SET servidor_id = :servidor_id, nombre = :nombre, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':servidor_id', $data['servidor_id']);
         $this->db->bind(':nombre', $data['nombre']);
-        $this->db->bind(':motor', $data['motor']);
         $this->db->bind(':descripcion', $data['descripcion']);
         return $this->db->execute();
     }
