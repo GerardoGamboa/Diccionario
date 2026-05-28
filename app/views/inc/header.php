@@ -18,15 +18,27 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>">Home</a>
-          </li>
+          <?php if(isset($_SESSION['user_id'])) : ?>
+            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/servidores">Servidores</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/basesdatos">BDs</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/tablas">Tablas</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/columnas">Columnas</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="others" role="button" data-bs-toggle="dropdown" aria-expanded="false">Otros</a>
+              <ul class="dropdown-menu" aria-labelledby="others">
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/vistas">Vistas</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/procedimientos">Procedimientos</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/funciones">Funciones</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/disparadores">Disparadores</a></li>
+              </ul>
+            </li>
+          <?php endif; ?>
         </ul>
 
         <ul class="navbar-nav ms-auto">
           <?php if(isset($_SESSION['user_id'])) : ?>
           <li class="nav-item">
-              <a class="nav-link" href="#">Welcome <?php echo $_SESSION['user_name']; ?></a>
+              <a class="nav-link" href="#">Bienvenido <?php echo $_SESSION['user_name']; ?></a>
             </li>
           <li class="nav-item">
               <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>

@@ -6,7 +6,7 @@
 
     public function index(){
       if(isLoggedIn()){
-        redirect('diccionario/index');
+        redirect('servidores/index');
       } else {
         redirect('users/login');
       }
