@@ -1,5 +1,5 @@
 <?php
-  class Diccionario {
+  class Objeto {
     private $db;
 
     public function __construct(){

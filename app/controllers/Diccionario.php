@@ -5,13 +5,13 @@
         redirect('users/login');
       }
 
-      $this->diccionarioModel = $this->model('Diccionario');
+      $this->objetoModel = $this->model('Objeto');
       $this->userModel = $this->model('User');
     }
 
     public function index(){
       // Get objects
-      $objetos = $this->diccionarioModel->getObjetos();
+      $objetos = $this->objetoModel->getObjetos();
 
       $data = [
         'objetos' => $objetos
@@ -47,7 +47,7 @@
         // Make sure no errors
         if(empty($data['nombre_err']) && empty($data['tipo_err'])){
           // Validated
-          if($this->diccionarioModel->addObjeto($data)){
+          if($this->objetoModel->addObjeto($data)){
             flash('post_message', 'Objeto Added');
             redirect('diccionario');
           } else {
@@ -98,7 +98,7 @@
         // Make sure no errors
         if(empty($data['nombre_err']) && empty($data['tipo_err'])){
           // Validated
-          if($this->diccionarioModel->updateObjeto($data)){
+          if($this->objetoModel->updateObjeto($data)){
             flash('post_message', 'Objeto Updated');
             redirect('diccionario');
           } else {
@@ -111,7 +111,7 @@
 
       } else {
         // Get existing post from model
-        $objeto = $this->diccionarioModel->getObjetoById($id);
+        $objeto = $this->objetoModel->getObjetoById($id);
 
         // Check for owner (Optional for DBA control, but here we check just in case)
         // if($objeto->usuario_creador != $_SESSION['user_id']){
@@ -133,14 +133,14 @@
     public function delete($id){
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Get existing post from model
-        $objeto = $this->diccionarioModel->getObjetoById($id);
+        $objeto = $this->objetoModel->getObjetoById($id);
 
         // Check for owner
         // if($objeto->usuario_creador != $_SESSION['user_id']){
         //   redirect('diccionario');
         // }
 
-        if($this->diccionarioModel->deleteObjeto($id)){
+        if($this->objetoModel->deleteObjeto($id)){
           flash('post_message', 'Objeto Removed');
           redirect('diccionario');
         } else {
