@@ -13,11 +13,12 @@ class Servidores extends Controller {
 
     public function add() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = [
                 'nombre' => trim($_POST['nombre']),
                 'ip' => trim($_POST['ip']),
                 'puerto' => trim($_POST['puerto']),
+                'motor' => trim($_POST['motor']),
                 'descripcion' => trim($_POST['descripcion']),
                 'user_id' => $_SESSION['user_id'],
                 'nombre_err' => ''
@@ -30,19 +31,27 @@ class Servidores extends Controller {
                 } else die('Error');
             } else $this->view('servidores/add', $data);
         } else {
-            $data = ['nombre' => '', 'ip' => '', 'puerto' => '', 'descripcion' => ''];
+            $data = [
+                'nombre' => '',
+                'ip' => '',
+                'puerto' => '',
+                'motor' => '',
+                'descripcion' => '',
+                'nombre_err' => ''
+            ];
             $this->view('servidores/add', $data);
         }
     }
 
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = [
                 'id' => $id,
                 'nombre' => trim($_POST['nombre']),
                 'ip' => trim($_POST['ip']),
                 'puerto' => trim($_POST['puerto']),
+                'motor' => trim($_POST['motor']),
                 'descripcion' => trim($_POST['descripcion']),
                 'nombre_err' => ''
             ];
@@ -55,7 +64,15 @@ class Servidores extends Controller {
             } else $this->view('servidores/edit', $data);
         } else {
             $servidor = $this->servidorModel->getServidorById($id);
-            $data = ['id' => $id, 'nombre' => $servidor->nombre, 'ip' => $servidor->ip, 'puerto' => $servidor->puerto, 'descripcion' => $servidor->descripcion];
+            $data = [
+                'id' => $id,
+                'nombre' => $servidor->nombre,
+                'ip' => $servidor->ip,
+                'puerto' => $servidor->puerto,
+                'motor' => $servidor->motor,
+                'descripcion' => $servidor->descripcion,
+                'nombre_err' => ''
+            ];
             $this->view('servidores/edit', $data);
         }
     }

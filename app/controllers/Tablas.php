@@ -11,20 +11,26 @@ class Tablas extends Controller {
     }
     public function add() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = ['base_datos_id' => trim($_POST['base_datos_id']), 'nombre' => trim($_POST['nombre']), 'descripcion' => trim($_POST['descripcion']), 'user_id' => $_SESSION['user_id'], 'nombre_err' => ''];
             if(empty($data['nombre'])) $data['nombre_err'] = 'Ingrese nombre';
             if(empty($data['nombre_err'])) {
                 if($this->tablaModel->addTabla($data)) { flash('msg', 'Tabla agregada'); redirect('tablas'); } else die('Error');
             } else { $data['bases'] = $this->bdModel->getBasesDatos(); $this->view('tablas/add', $data); }
         } else {
-            $data = ['bases' => $this->bdModel->getBasesDatos(), 'base_datos_id' => '', 'nombre' => '', 'descripcion' => ''];
+            $data = [
+                'bases' => $this->bdModel->getBasesDatos(),
+                'base_datos_id' => '',
+                'nombre' => '',
+                'descripcion' => '',
+                'nombre_err' => ''
+            ];
             $this->view('tablas/add', $data);
         }
     }
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = ['id' => $id, 'base_datos_id' => trim($_POST['base_datos_id']), 'nombre' => trim($_POST['nombre']), 'descripcion' => trim($_POST['descripcion']), 'nombre_err' => ''];
             if(empty($data['nombre'])) $data['nombre_err'] = 'Ingrese nombre';
             if(empty($data['nombre_err'])) {
@@ -32,7 +38,14 @@ class Tablas extends Controller {
             } else { $data['bases'] = $this->bdModel->getBasesDatos(); $this->view('tablas/edit', $data); }
         } else {
             $tabla = $this->tablaModel->getTablaById($id);
-            $data = ['id' => $id, 'bases' => $this->bdModel->getBasesDatos(), 'base_datos_id' => $tabla->base_datos_id, 'nombre' => $tabla->nombre, 'descripcion' => $tabla->descripcion];
+            $data = [
+                'id' => $id,
+                'bases' => $this->bdModel->getBasesDatos(),
+                'base_datos_id' => $tabla->base_datos_id,
+                'nombre' => $tabla->nombre,
+                'descripcion' => $tabla->descripcion,
+                'nombre_err' => ''
+            ];
             $this->view('tablas/edit', $data);
         }
     }

@@ -6,6 +6,9 @@
         <h2>Login</h2>
         <p>Please fill in your credentials to log in</p>
         <form action="<?php echo URLROOT; ?>/users/login" method="post">
+          <div class="text-center mb-3">
+            <img src="<?php echo URLROOT; ?>/img/logo.png" alt="Logo" class="img-fluid" style="max-height: 120px;">
+          </div>
           <div class="mb-3">
             <label for="email">Email: <sup>*</sup></label>
             <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?>">

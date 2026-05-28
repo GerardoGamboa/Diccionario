@@ -11,7 +11,7 @@ class Columnas extends Controller {
     }
     public function add() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = [
                 'tabla_id' => trim($_POST['tabla_id']),
                 'nombre' => trim($_POST['nombre']),
@@ -27,13 +27,22 @@ class Columnas extends Controller {
                 if($this->columnaModel->addColumna($data)) { flash('msg', 'Columna agregada'); redirect('columnas'); } else die('Error');
             } else { $data['tablas'] = $this->tablaModel->getTablas(); $this->view('columnas/add', $data); }
         } else {
-            $data = ['tablas' => $this->tablaModel->getTablas(), 'tabla_id' => '', 'nombre' => '', 'tipo_dato' => '', 'longitud' => '', 'permite_nulo' => 1, 'descripcion' => ''];
+            $data = [
+                'tablas' => $this->tablaModel->getTablas(),
+                'tabla_id' => '',
+                'nombre' => '',
+                'tipo_dato' => '',
+                'longitud' => '',
+                'permite_nulo' => 1,
+                'descripcion' => '',
+                'nombre_err' => ''
+            ];
             $this->view('columnas/add', $data);
         }
     }
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
             $data = [
                 'id' => $id,
                 'tabla_id' => trim($_POST['tabla_id']),
@@ -58,7 +67,8 @@ class Columnas extends Controller {
                 'tipo_dato' => $columna->tipo_dato,
                 'longitud' => $columna->longitud,
                 'permite_nulo' => $columna->permite_nulo,
-                'descripcion' => $columna->descripcion
+                'descripcion' => $columna->descripcion,
+                'nombre_err' => ''
             ];
             $this->view('columnas/edit', $data);
         }
