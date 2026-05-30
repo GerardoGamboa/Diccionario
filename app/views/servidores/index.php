@@ -9,11 +9,11 @@
     <tbody>
     <?php foreach($data['servidores'] as $servidor) : ?>
         <tr>
-            <td><?php echo $servidor->nombre; ?></td>
-            <td><?php echo $servidor->ip; ?></td>
-            <td><?php echo $servidor->puerto; ?></td>
+            <td><?php echo h($servidor->nombre); ?></td>
+            <td><?php echo h($servidor->ip); ?></td>
+            <td><?php echo h($servidor->puerto); ?></td>
             <td><?php echo h($servidor->motor); ?></td>
-            <td><?php echo $servidor->creatorName; ?></td>
+            <td><?php echo h($servidor->creatorName); ?></td>
             <td>
                 <a href="<?php echo URLROOT; ?>/servidores/edit/<?php echo $servidor->servidorId; ?>" class="btn btn-sm btn-warning">Editar</a>
                 <form class="d-inline" action="<?php echo URLROOT; ?>/servidores/delete/<?php echo $servidor->servidorId; ?>" method="post"><input type="submit" value="Borrar" class="btn btn-sm btn-danger"></form>

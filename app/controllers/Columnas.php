@@ -18,6 +18,7 @@ class Columnas extends Controller {
                 'tipo_dato' => trim($_POST['tipo_dato']),
                 'longitud' => trim($_POST['longitud']),
                 'permite_nulo' => isset($_POST['permite_nulo']) ? 1 : 0,
+                'es_llave' => isset($_POST['es_llave']) ? 1 : 0,
                 'descripcion' => trim($_POST['descripcion']),
                 'user_id' => $_SESSION['user_id'],
                 'nombre_err' => ''
@@ -34,6 +35,7 @@ class Columnas extends Controller {
                 'tipo_dato' => '',
                 'longitud' => '',
                 'permite_nulo' => 1,
+                'es_llave' => 0,
                 'descripcion' => '',
                 'nombre_err' => ''
             ];
@@ -50,6 +52,7 @@ class Columnas extends Controller {
                 'tipo_dato' => trim($_POST['tipo_dato']),
                 'longitud' => trim($_POST['longitud']),
                 'permite_nulo' => isset($_POST['permite_nulo']) ? 1 : 0,
+                'es_llave' => isset($_POST['es_llave']) ? 1 : 0,
                 'descripcion' => trim($_POST['descripcion']),
                 'nombre_err' => ''
             ];
@@ -67,6 +70,7 @@ class Columnas extends Controller {
                 'tipo_dato' => $columna->tipo_dato,
                 'longitud' => $columna->longitud,
                 'permite_nulo' => $columna->permite_nulo,
+                'es_llave' => $columna->es_llave,
                 'descripcion' => $columna->descripcion,
                 'nombre_err' => ''
             ];

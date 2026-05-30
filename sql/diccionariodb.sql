@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS columnas (
     tipo_dato VARCHAR(100),
     longitud VARCHAR(50),
     permite_nulo BOOLEAN DEFAULT TRUE,
+    es_llave BOOLEAN DEFAULT FALSE,
     descripcion TEXT,
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
