@@ -65,3 +65,9 @@
 [Thu May 28 19:34:03 2026] 127.0.0.1:57328 Accepted
 [Thu May 28 19:34:03 2026] 127.0.0.1:57328 [200]: GET /img/logo.png
 [Thu May 28 19:34:03 2026] 127.0.0.1:57328 Closing
+[Sat May 30 01:08:40 2026] 127.0.0.1:48044 Accepted
+[Sat May 30 01:08:40 2026] 127.0.0.1:48044 [200]: GET /index.php?url=users/login
+[Sat May 30 01:08:40 2026] 127.0.0.1:48044 Closing
+[Sat May 30 01:08:40 2026] 127.0.0.1:48060 Accepted
+[Sat May 30 01:08:40 2026] 127.0.0.1:48060 [200]: GET /img/logo.png
+[Sat May 30 01:08:40 2026] 127.0.0.1:48060 Closing

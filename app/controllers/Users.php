@@ -5,6 +5,9 @@
     }
 
     public function login(){
+      if(isLoggedIn()){
+        redirect('servidores/index');
+      }
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Process form
