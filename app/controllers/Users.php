@@ -24,12 +24,12 @@
 
         // Validate Email
         if(empty($data['email'])){
-          $data['email_err'] = 'Please enter email';
+          $data['email_err'] = 'Por favor ingrese su correo';
         }
 
         // Validate Password
         if(empty($data['password'])){
-          $data['password_err'] = 'Please enter password';
+          $data['password_err'] = 'Por favor ingrese su contraseña';
         }
 
         // Check for user/email
@@ -37,7 +37,7 @@
           // User found
         } else {
           // User not found
-          $data['email_err'] = 'No user found';
+          $data['email_err'] = 'Usuario no encontrado';
         }
 
         // Make sure errors are empty
@@ -50,7 +50,7 @@
             // Create Session
             $this->createUserSession($loggedInUser);
           } else {
-            $data['password_err'] = 'Password incorrect';
+            $data['password_err'] = 'Contraseña incorrecta';
 
             $this->view('users/login', $data);
           }
