@@ -3,15 +3,15 @@ class Tabla {
     private $db;
     public function __construct() { $this->db = new Database; }
     public function getTablas() {
-        $this->db->query('SELECT tablas.*, tablas.id as tablaId, bases_datos.nombre as bdNombre, users.name as creatorName
-                          FROM tablas
-                          INNER JOIN bases_datos ON tablas.base_datos_id = bases_datos.id
-                          LEFT JOIN users ON tablas.usuario_creador = users.id
-                          ORDER BY tablas.fecha_creacion DESC');
+        $this->db->query('SELECT dic_tablas.*, dic_tablas.id as tablaId, dic_bases_datos.nombre as bdNombre, dic_users.name as creatorName
+                          FROM dic_tablas
+                          INNER JOIN dic_bases_datos ON dic_tablas.base_datos_id = dic_bases_datos.id
+                          LEFT JOIN dic_users ON dic_tablas.usuario_creador = dic_users.id
+                          ORDER BY dic_tablas.fecha_creacion DESC');
         return $this->db->resultSet();
     }
     public function addTabla($data) {
-        $this->db->query('INSERT INTO tablas (base_datos_id, nombre, descripcion, usuario_creador) VALUES (:base_datos_id, :nombre, :descripcion, :usuario_creador)');
+        $this->db->query('INSERT INTO dic_tablas (base_datos_id, nombre, descripcion, usuario_creador) VALUES (:base_datos_id, :nombre, :descripcion, :usuario_creador)');
         $this->db->bind(':base_datos_id', $data['base_datos_id']);
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':descripcion', $data['descripcion']);
@@ -19,12 +19,12 @@ class Tabla {
         return $this->db->execute();
     }
     public function getTablaById($id) {
-        $this->db->query('SELECT * FROM tablas WHERE id = :id');
+        $this->db->query('SELECT * FROM dic_tablas WHERE id = :id');
         $this->db->bind(':id', $id);
         return $this->db->single();
     }
     public function updateTabla($data) {
-        $this->db->query('UPDATE tablas SET base_datos_id = :base_datos_id, nombre = :nombre, descripcion = :descripcion WHERE id = :id');
+        $this->db->query('UPDATE dic_tablas SET base_datos_id = :base_datos_id, nombre = :nombre, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':base_datos_id', $data['base_datos_id']);
         $this->db->bind(':nombre', $data['nombre']);
@@ -32,7 +32,7 @@ class Tabla {
         return $this->db->execute();
     }
     public function deleteTabla($id) {
-        $this->db->query('DELETE FROM tablas WHERE id = :id');
+        $this->db->query('DELETE FROM dic_tablas WHERE id = :id');
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }

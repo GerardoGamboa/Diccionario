@@ -8,7 +8,7 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
+      $this->db->query('INSERT INTO dic_users (name, email, password) VALUES(:name, :email, :password)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':email', $data['email']);
@@ -24,7 +24,7 @@
 
     // Login User
     public function login($email, $password){
-      $this->db->query('SELECT * FROM users WHERE email = :email');
+      $this->db->query('SELECT * FROM dic_users WHERE email = :email');
       $this->db->bind(':email', $email);
 
       $row = $this->db->single();
@@ -43,7 +43,7 @@
 
     // Find user by email
     public function findUserByEmail($email){
-      $this->db->query('SELECT * FROM users WHERE email = :email');
+      $this->db->query('SELECT * FROM dic_users WHERE email = :email');
       // Bind value
       $this->db->bind(':email', $email);
 
@@ -59,7 +59,7 @@
 
     // Get User by ID
     public function getUserById($id){
-      $this->db->query('SELECT * FROM users WHERE id = :id');
+      $this->db->query('SELECT * FROM dic_users WHERE id = :id');
       // Bind value
       $this->db->bind(':id', $id);
 

@@ -7,15 +7,15 @@ class Servidor {
     }
 
     public function getServidores() {
-        $this->db->query('SELECT *, servidores.id as servidorId, users.name as creatorName
-                          FROM servidores
-                          LEFT JOIN users ON servidores.usuario_creador = users.id
-                          ORDER BY servidores.fecha_creacion DESC');
+        $this->db->query('SELECT *, dic_servidores.id as servidorId, dic_users.name as creatorName
+                          FROM dic_servidores
+                          LEFT JOIN dic_users ON dic_servidores.usuario_creador = dic_users.id
+                          ORDER BY dic_servidores.fecha_creacion DESC');
         return $this->db->resultSet();
     }
 
     public function addServidor($data) {
-        $this->db->query('INSERT INTO servidores (nombre, ip, puerto, motor, descripcion, usuario_creador)
+        $this->db->query('INSERT INTO dic_servidores (nombre, ip, puerto, motor, descripcion, usuario_creador)
                           VALUES (:nombre, :ip, :puerto, :motor, :descripcion, :usuario_creador)');
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':ip', $data['ip']);
@@ -27,13 +27,13 @@ class Servidor {
     }
 
     public function getServidorById($id) {
-        $this->db->query('SELECT * FROM servidores WHERE id = :id');
+        $this->db->query('SELECT * FROM dic_servidores WHERE id = :id');
         $this->db->bind(':id', $id);
         return $this->db->single();
     }
 
     public function updateServidor($data) {
-        $this->db->query('UPDATE servidores SET nombre = :nombre, ip = :ip, puerto = :puerto, motor = :motor, descripcion = :descripcion WHERE id = :id');
+        $this->db->query('UPDATE dic_servidores SET nombre = :nombre, ip = :ip, puerto = :puerto, motor = :motor, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':ip', $data['ip']);
@@ -44,7 +44,7 @@ class Servidor {
     }
 
     public function deleteServidor($id) {
-        $this->db->query('DELETE FROM servidores WHERE id = :id');
+        $this->db->query('DELETE FROM dic_servidores WHERE id = :id');
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
