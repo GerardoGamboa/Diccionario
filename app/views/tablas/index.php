@@ -1,6 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php flash('msg'); ?>
 <div class="row mb-3">
+    <div class="col-md-12 mb-3"><input type="text" id="searchInput" class="form-control" placeholder="Filtrar registros..."></div>
     <div class="col-md-6"><h1>Tablas</h1></div>
     <div class="col-md-6 text-end"><a href="<?php echo URLROOT; ?>/tablas/add" class="btn btn-primary">Agregar Tabla</a></div>
 </div>
