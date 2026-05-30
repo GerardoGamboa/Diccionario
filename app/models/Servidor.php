@@ -7,9 +7,9 @@ class Servidor {
     }
 
     public function getServidores() {
-        $this->db->query('SELECT *, dic_servidores.id as servidorId, dic_users.name as creatorName
+        $this->db->query('SELECT *, dic_servidores.id as servidorId, dic_usuarios.name as creatorName
                           FROM dic_servidores
-                          LEFT JOIN dic_users ON dic_servidores.usuario_creador = dic_users.id
+                          LEFT JOIN dic_usuarios ON dic_servidores.usuario_creador = dic_usuarios.id
                           ORDER BY dic_servidores.fecha_creacion DESC');
         return $this->db->resultSet();
     }

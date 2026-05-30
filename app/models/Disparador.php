@@ -3,10 +3,10 @@ class Disparador {
     private $db;
     public function __construct() { $this->db = new Database; }
     public function getDisparadores() {
-        $this->db->query('SELECT dic_disparadores.*, dic_disparadores.id as dispId, dic_tablas.nombre as tablaNombre, dic_users.name as creatorName
+        $this->db->query('SELECT dic_disparadores.*, dic_disparadores.id as dispId, dic_tablas.nombre as tablaNombre, dic_usuarios.name as creatorName
                           FROM dic_disparadores
                           INNER JOIN dic_tablas ON dic_disparadores.tabla_id = dic_tablas.id
-                          LEFT JOIN dic_users ON dic_disparadores.usuario_creador = dic_users.id
+                          LEFT JOIN dic_usuarios ON dic_disparadores.usuario_creador = dic_usuarios.id
                           ORDER BY dic_disparadores.fecha_creacion DESC');
         return $this->db->resultSet();
     }

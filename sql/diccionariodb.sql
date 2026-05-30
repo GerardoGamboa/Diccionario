@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS diccionariodb;
 USE diccionariodb;
 
 -- Users table for authentication
-CREATE TABLE IF NOT EXISTS dic_users (
+CREATE TABLE IF NOT EXISTS dic_usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS dic_servidores (
     descripcion TEXT,
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 2. Bases de Datos (Linked to Servidor)
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS dic_bases_datos (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (servidor_id) REFERENCES dic_servidores(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 3. Tablas (Linked to Base de Datos)
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS dic_tablas (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (base_datos_id) REFERENCES dic_bases_datos(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 4. Columnas (Linked to Tabla)
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS dic_columnas (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tabla_id) REFERENCES dic_tablas(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 5. Vistas (Linked to Base de Datos)
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS dic_vistas (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (base_datos_id) REFERENCES dic_bases_datos(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 6. Procedimientos (Linked to Base de Datos)
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS dic_procedimientos (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (base_datos_id) REFERENCES dic_bases_datos(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 7. Funciones (Linked to Base de Datos)
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS dic_funciones (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (base_datos_id) REFERENCES dic_bases_datos(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- 8. Disparadores (Linked to Tabla)
@@ -114,8 +114,8 @@ CREATE TABLE IF NOT EXISTS dic_disparadores (
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tabla_id) REFERENCES dic_tablas(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_creador) REFERENCES dic_users(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
 -- Insert a default user (password is '123456')
-INSERT INTO dic_users (name, email, password) VALUES ('Admin', 'admin@example.com', '$2y$10$0N3205WhRuKNH8I2XVMCn.uAVRwsu6mj0En1cKyozc3Ni2BZfiCJ2');
+INSERT INTO dic_usuarios (name, email, password) VALUES ('Admin', 'admin@example.com', '$2y$10$0N3205WhRuKNH8I2XVMCn.uAVRwsu6mj0En1cKyozc3Ni2BZfiCJ2');

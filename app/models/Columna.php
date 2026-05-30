@@ -3,10 +3,10 @@ class Columna {
     private $db;
     public function __construct() { $this->db = new Database; }
     public function getColumnas() {
-        $this->db->query('SELECT dic_columnas.*, dic_columnas.id as columnaId, dic_tablas.nombre as tablaNombre, dic_users.name as creatorName
+        $this->db->query('SELECT dic_columnas.*, dic_columnas.id as columnaId, dic_tablas.nombre as tablaNombre, dic_usuarios.name as creatorName
                           FROM dic_columnas
                           INNER JOIN dic_tablas ON dic_columnas.tabla_id = dic_tablas.id
-                          LEFT JOIN dic_users ON dic_columnas.usuario_creador = dic_users.id
+                          LEFT JOIN dic_usuarios ON dic_columnas.usuario_creador = dic_usuarios.id
                           ORDER BY dic_columnas.fecha_creacion DESC');
         return $this->db->resultSet();
     }

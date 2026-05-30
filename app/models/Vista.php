@@ -3,10 +3,10 @@ class Vista {
     private $db;
     public function __construct() { $this->db = new Database; }
     public function getVistas() {
-        $this->db->query('SELECT dic_vistas.*, dic_vistas.id as vistaId, dic_bases_datos.nombre as bdNombre, dic_users.name as creatorName
+        $this->db->query('SELECT dic_vistas.*, dic_vistas.id as vistaId, dic_bases_datos.nombre as bdNombre, dic_usuarios.name as creatorName
                           FROM dic_vistas
                           INNER JOIN dic_bases_datos ON dic_vistas.base_datos_id = dic_bases_datos.id
-                          LEFT JOIN dic_users ON dic_vistas.usuario_creador = dic_users.id
+                          LEFT JOIN dic_usuarios ON dic_vistas.usuario_creador = dic_usuarios.id
                           ORDER BY dic_vistas.fecha_creacion DESC');
         return $this->db->resultSet();
     }

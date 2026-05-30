@@ -3,10 +3,10 @@ class Funcion {
     private $db;
     public function __construct() { $this->db = new Database; }
     public function getFunciones() {
-        $this->db->query('SELECT dic_funciones.*, dic_funciones.id as funcId, dic_bases_datos.nombre as bdNombre, dic_users.name as creatorName
+        $this->db->query('SELECT dic_funciones.*, dic_funciones.id as funcId, dic_bases_datos.nombre as bdNombre, dic_usuarios.name as creatorName
                           FROM dic_funciones
                           INNER JOIN dic_bases_datos ON dic_funciones.base_datos_id = dic_bases_datos.id
-                          LEFT JOIN dic_users ON dic_funciones.usuario_creador = dic_users.id
+                          LEFT JOIN dic_usuarios ON dic_funciones.usuario_creador = dic_usuarios.id
                           ORDER BY dic_funciones.fecha_creacion DESC');
         return $this->db->resultSet();
     }

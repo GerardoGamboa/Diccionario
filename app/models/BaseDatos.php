@@ -7,10 +7,10 @@ class BaseDatos {
     }
 
     public function getBasesDatos() {
-        $this->db->query('SELECT dic_bases_datos.*, dic_bases_datos.id as bdId, dic_servidores.nombre as servidorNombre, dic_users.name as creatorName
+        $this->db->query('SELECT dic_bases_datos.*, dic_bases_datos.id as bdId, dic_servidores.nombre as servidorNombre, dic_usuarios.name as creatorName
                           FROM dic_bases_datos
                           INNER JOIN dic_servidores ON dic_bases_datos.servidor_id = dic_servidores.id
-                          LEFT JOIN dic_users ON dic_bases_datos.usuario_creador = dic_users.id
+                          LEFT JOIN dic_usuarios ON dic_bases_datos.usuario_creador = dic_usuarios.id
                           ORDER BY dic_bases_datos.fecha_creacion DESC');
         return $this->db->resultSet();
     }
