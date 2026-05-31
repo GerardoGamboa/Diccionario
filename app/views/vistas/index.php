@@ -14,6 +14,7 @@
             <td><?php echo h($v->bdNombre); ?></td>
             <td><?php echo h($v->creatorName); ?></td>
             <td>
+                <a href="<?php echo URLROOT; ?>/vistas/versiones/<?php echo $v->vistaId; ?>" class="btn btn-sm btn-info">Versiones</a>
                 <a href="<?php echo URLROOT; ?>/vistas/edit/<?php echo $v->vistaId; ?>" class="btn btn-sm btn-warning">Editar</a>
                 <form class="d-inline" action="<?php echo URLROOT; ?>/vistas/delete/<?php echo $v->vistaId; ?>" method="post"><input type="submit" value="Borrar" class="btn btn-sm btn-danger"></form>
             </td>

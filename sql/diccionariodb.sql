@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS dic_disparadores (
 CREATE TABLE IF NOT EXISTS dic_versiones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     objeto_id INT NOT NULL,
-    tipo_objeto ENUM('procedimiento', 'funcion', 'disparador') NOT NULL,
+    tipo_objeto ENUM('procedimiento', 'funcion', 'disparador', 'vista') NOT NULL,
     consecutivo INT NOT NULL,
     codigo TEXT,
     descripcion TEXT,

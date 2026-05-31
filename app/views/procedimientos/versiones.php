@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <h5>Código:</h5>
-            <pre class="bg-dark text-light p-3"><code><?php echo h($v->codigo); ?></code></pre>
+            <pre class="bg-dark text-light p-3" style="font-family: 'Courier New', Courier, monospace; white-space: pre-wrap;"><code><?php echo h($v->codigo); ?></code></pre>
             <?php if(!empty($v->descripcion)) : ?>
                 <h5>Descripción:</h5>
                 <p><?php echo h($v->descripcion); ?></p>

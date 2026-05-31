@@ -39,4 +39,15 @@ class Vistas extends Controller {
     public function delete($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') { if($this->vistaModel->deleteVista($id)) { flash('msg', 'Vista eliminada'); redirect('vistas'); } else die('Error'); } else redirect('vistas');
     }
+
+    public function versiones($id){
+        $vista = $this->vistaModel->getVistaById($id);
+        $versiones = $this->vistaModel->getVersions($id);
+        $data = [
+            'objeto' => $vista,
+            'versiones' => $versiones,
+            'titulo' => 'Versiones de la Vista'
+        ];
+        $this->view('vistas/versiones', $data);
+    }
 }

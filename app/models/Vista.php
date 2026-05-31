@@ -17,7 +17,13 @@ class Vista {
         $this->db->bind(':codigo', $data['codigo']);
         $this->db->bind(':descripcion', $data['descripcion']);
         $this->db->bind(':usuario_creador', $data['user_id']);
-        return $this->db->execute();
+
+        if($this->db->execute()){
+            $objeto_id = $this->db->lastInsertId();
+            return $this->addVersion($objeto_id, 'vista', $data);
+        } else {
+            return false;
+        }
     }
     public function getVistaById($id) {
         $this->db->query('SELECT * FROM dic_vistas WHERE id = :id');
@@ -31,7 +37,35 @@ class Vista {
         $this->db->bind(':nombre', $data['nombre']);
         $this->db->bind(':codigo', $data['codigo']);
         $this->db->bind(':descripcion', $data['descripcion']);
+
+        if($this->db->execute()){
+            return $this->addVersion($data['id'], 'vista', $data);
+        } else {
+            return false;
+        }
+    }
+
+    private function addVersion($objeto_id, $tipo, $data){
+        $this->db->query('SELECT MAX(consecutivo) as last_c FROM dic_versiones WHERE objeto_id = :objeto_id AND tipo_objeto = :tipo_objeto');
+        $this->db->bind(':objeto_id', $objeto_id);
+        $this->db->bind(':tipo_objeto', $tipo);
+        $row = $this->db->single();
+        $consecutivo = ($row->last_c) ? $row->last_c + 1 : 1;
+
+        $this->db->query('INSERT INTO dic_versiones (objeto_id, tipo_objeto, consecutivo, codigo, descripcion, usuario_creador) VALUES (:objeto_id, :tipo_objeto, :consecutivo, :codigo, :descripcion, :usuario_creador)');
+        $this->db->bind(':objeto_id', $objeto_id);
+        $this->db->bind(':tipo_objeto', $tipo);
+        $this->db->bind(':consecutivo', $consecutivo);
+        $this->db->bind(':codigo', $data['codigo']);
+        $this->db->bind(':descripcion', $data['descripcion']);
+        $this->db->bind(':usuario_creador', $_SESSION['user_id']);
         return $this->db->execute();
+    }
+
+    public function getVersions($id){
+        $this->db->query('SELECT v.*, u.name as creatorName FROM dic_versiones v LEFT JOIN dic_usuarios u ON v.usuario_creador = u.id WHERE objeto_id = :objeto_id AND tipo_objeto = "vista" ORDER BY consecutivo DESC');
+        $this->db->bind(':objeto_id', $id);
+        return $this->db->resultSet();
     }
     public function deleteVista($id) {
         $this->db->query('DELETE FROM dic_vistas WHERE id = :id');
