@@ -39,4 +39,15 @@ class Procedimientos extends Controller {
     public function delete($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') { if($this->procModel->deleteProcedimiento($id)) { flash('msg', 'Procedimiento eliminado'); redirect('procedimientos'); } else die('Error'); } else redirect('procedimientos');
     }
+
+    public function versiones($id){
+        $procedimiento = $this->procModel->getProcedimientoById($id);
+        $versiones = $this->procModel->getVersions($id);
+        $data = [
+            'objeto' => $procedimiento,
+            'versiones' => $versiones,
+            'titulo' => 'Versiones del Procedimiento'
+        ];
+        $this->view('procedimientos/versiones', $data);
+    }
 }

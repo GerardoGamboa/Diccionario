@@ -117,5 +117,18 @@ CREATE TABLE IF NOT EXISTS dic_disparadores (
     FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
+-- Versioning table
+CREATE TABLE IF NOT EXISTS dic_versiones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    objeto_id INT NOT NULL,
+    tipo_objeto ENUM('procedimiento', 'funcion', 'disparador') NOT NULL,
+    consecutivo INT NOT NULL,
+    codigo TEXT,
+    descripcion TEXT,
+    usuario_creador INT,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
+);
+
 -- Insert a default user (password is '123456')
 INSERT INTO dic_usuarios (name, email, password) VALUES ('Admin', 'admin@example.com', '$2y$10$0N3205WhRuKNH8I2XVMCn.uAVRwsu6mj0En1cKyozc3Ni2BZfiCJ2');

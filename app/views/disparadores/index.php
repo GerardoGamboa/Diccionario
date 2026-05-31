@@ -15,6 +15,7 @@
             <td><?php echo h($disp->evento); ?></td>
             <td><?php echo h($disp->creatorName); ?></td>
             <td>
+                <a href="<?php echo URLROOT; ?>/disparadores/versiones/<?php echo $disp->dispId; ?>" class="btn btn-sm btn-info">Versiones</a>
                 <a href="<?php echo URLROOT; ?>/disparadores/edit/<?php echo $disp->dispId; ?>" class="btn btn-sm btn-warning">Editar</a>
                 <form class="d-inline" action="<?php echo URLROOT; ?>/disparadores/delete/<?php echo $disp->dispId; ?>" method="post"><input type="submit" value="Borrar" class="btn btn-sm btn-danger"></form>
             </td>

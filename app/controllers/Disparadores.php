@@ -39,4 +39,15 @@ class Disparadores extends Controller {
     public function delete($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') { if($this->dispModel->deleteDisparador($id)) { flash('msg', 'Disparador eliminado'); redirect('disparadores'); } else die('Error'); } else redirect('disparadores');
     }
+
+    public function versiones($id){
+        $disparador = $this->dispModel->getDisparadorById($id);
+        $versiones = $this->dispModel->getVersions($id);
+        $data = [
+            'objeto' => $disparador,
+            'versiones' => $versiones,
+            'titulo' => 'Versiones del Disparador'
+        ];
+        $this->view('disparadores/versiones', $data);
+    }
 }

@@ -14,6 +14,7 @@
             <td><?php echo h($p->bdNombre); ?></td>
             <td><?php echo h($p->creatorName); ?></td>
             <td>
+                <a href="<?php echo URLROOT; ?>/procedimientos/versiones/<?php echo $p->procId; ?>" class="btn btn-sm btn-info">Versiones</a>
                 <a href="<?php echo URLROOT; ?>/procedimientos/edit/<?php echo $p->procId; ?>" class="btn btn-sm btn-warning">Editar</a>
                 <form class="d-inline" action="<?php echo URLROOT; ?>/procedimientos/delete/<?php echo $p->procId; ?>" method="post"><input type="submit" value="Borrar" class="btn btn-sm btn-danger"></form>
             </td>

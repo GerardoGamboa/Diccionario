@@ -39,4 +39,15 @@ class Funciones extends Controller {
     public function delete($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') { if($this->funcModel->deleteFuncion($id)) { flash('msg', 'Función eliminada'); redirect('funciones'); } else die('Error'); } else redirect('funciones');
     }
+
+    public function versiones($id){
+        $funcion = $this->funcModel->getFuncionById($id);
+        $versiones = $this->funcModel->getVersions($id);
+        $data = [
+            'objeto' => $funcion,
+            'versiones' => $versiones,
+            'titulo' => 'Versiones de la Función'
+        ];
+        $this->view('funciones/versiones', $data);
+    }
 }
