@@ -12,7 +12,7 @@
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Process form
         // Sanitize POST data
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+        $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         // Init data
         $data =[

@@ -14,7 +14,7 @@ class Basesdatos extends Controller {
 
     public function add() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             $data = [
                 'servidor_id' => trim($_POST['servidor_id']),
                 'nombre' => trim($_POST['nombre']),
@@ -43,7 +43,7 @@ class Basesdatos extends Controller {
 
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             $data = [
                 'id' => $id,
                 'servidor_id' => trim($_POST['servidor_id']),

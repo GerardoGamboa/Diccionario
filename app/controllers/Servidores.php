@@ -13,7 +13,7 @@ class Servidores extends Controller {
 
     public function add() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             $data = [
                 'nombre' => trim($_POST['nombre']),
                 'ip' => trim($_POST['ip']),
@@ -45,7 +45,7 @@ class Servidores extends Controller {
 
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             $data = [
                 'id' => $id,
                 'nombre' => trim($_POST['nombre']),
