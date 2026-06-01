@@ -3,7 +3,6 @@
     <div class="col-md-6 mx-auto">
       <div class="card card-body bg-light mt-5">
         <?php flash('register_success'); ?>
-        <h2>Iniciar Sesión</h2>
         <form action="<?php echo URLROOT; ?>/users/login" method="post">
           <div class="text-center mb-3">
             <img src="<?php echo URLROOT; ?>/img/logo.png" alt="Logo" class="img-fluid" style="max-height: 120px;">
