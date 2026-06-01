@@ -7,8 +7,15 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <title><?php echo SITENAME; ?></title>
+  <style>
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; }
+    .content-wrapper { flex: 1 0 auto; }
+    .footer { flex-shrink: 0; }
+  </style>
 </head>
 <body>
+  <div class="content-wrapper">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
   <div class="container">
       <a class="navbar-brand" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>

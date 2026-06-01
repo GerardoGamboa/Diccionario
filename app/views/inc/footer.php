@@ -1,6 +1,7 @@
   </div>
+  </div>
 
-  <footer class="footer mt-auto py-3 bg-light text-center">
+  <footer class="footer py-3 bg-light text-center border-top">
     <div class="container">
       <small class="text-muted">Basis datorum | 2026</small>
     </div>
