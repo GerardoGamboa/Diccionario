@@ -79,4 +79,10 @@ class Basesdatos extends Controller {
             } else die('Error');
         } else redirect('basesdatos');
     }
+
+    public function getByServidor($servidor_id) {
+        $bases = $this->bdModel->getBasesDatosByServidor($servidor_id);
+        header('Content-Type: application/json');
+        echo json_encode($bases);
+    }
 }

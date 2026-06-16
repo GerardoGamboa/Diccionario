@@ -31,6 +31,12 @@ class BaseDatos {
         return $this->db->single();
     }
 
+    public function getBasesDatosByServidor($servidor_id) {
+        $this->db->query('SELECT * FROM dic_bases_datos WHERE servidor_id = :servidor_id ORDER BY nombre ASC');
+        $this->db->bind(':servidor_id', $servidor_id);
+        return $this->db->resultSet();
+    }
+
     public function updateBaseDatos($data) {
         $this->db->query('UPDATE dic_bases_datos SET servidor_id = :servidor_id, nombre = :nombre, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
