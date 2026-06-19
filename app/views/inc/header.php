@@ -26,18 +26,25 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav me-auto">
           <?php if(isset($_SESSION['user_id'])) : ?>
-            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/servidores">Servidores</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/basesdatos">BDs</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/tablas">Tablas</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/columnas">Columnas</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?php echo URLROOT; ?>/users">Usuarios</a></li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="others" role="button" data-bs-toggle="dropdown" aria-expanded="false">Otros</a>
-              <ul class="dropdown-menu" aria-labelledby="others">
-                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/vistas">Vistas</a></li>
-                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/procedimientos">Procedimientos</a></li>
-                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/funciones">Funciones</a></li>
+              <a class="nav-link dropdown-toggle" href="#" id="config" role="button" data-bs-toggle="dropdown" aria-expanded="false">Configuración</a>
+              <ul class="dropdown-menu" aria-labelledby="config">
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users">Usuarios</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">Salir</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="objects" role="button" data-bs-toggle="dropdown" aria-expanded="false">Objetos</a>
+              <ul class="dropdown-menu" aria-labelledby="objects">
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/servidores">Servidores</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/basesdatos">Bases de Datos</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/tablas">Tablas</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/columnas">Columnas</a></li>
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/disparadores">Disparadores</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/vistas">Vistas</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/procedimientos">Procedimientos Almacenados</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/funciones">Funciones</a></li>
               </ul>
             </li>
           <?php endif; ?>
@@ -46,10 +53,7 @@
         <ul class="navbar-nav ms-auto">
           <?php if(isset($_SESSION['user_id'])) : ?>
           <li class="nav-item">
-              <a class="nav-link" href="#">Bienvenido <?php echo $_SESSION['user_name']; ?></a>
-            </li>
-          <li class="nav-item">
-              <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
+              <a class="nav-link disabled" href="#">Bienvenido <?php echo $_SESSION['user_name']; ?></a>
             </li>
           <?php else : ?>
             <li class="nav-item">
