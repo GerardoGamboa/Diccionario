@@ -94,4 +94,10 @@ class Tablas extends Controller {
     public function delete($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST') { if($this->tablaModel->deleteTabla($id)) { flash('msg', 'Tabla eliminada'); redirect('tablas'); } else die('Error'); } else redirect('tablas');
     }
+
+    public function getByBaseDatos($base_datos_id) {
+        $tablas = $this->tablaModel->getTablasByBaseDatos($base_datos_id);
+        header('Content-Type: application/json');
+        echo json_encode($tablas);
+    }
 }

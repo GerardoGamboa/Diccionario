@@ -23,6 +23,12 @@ class Tabla {
         $this->db->bind(':id', $id);
         return $this->db->single();
     }
+
+    public function getTablasByBaseDatos($base_datos_id) {
+        $this->db->query('SELECT * FROM dic_tablas WHERE base_datos_id = :base_datos_id ORDER BY nombre ASC');
+        $this->db->bind(':base_datos_id', $base_datos_id);
+        return $this->db->resultSet();
+    }
     public function updateTabla($data) {
         $this->db->query('UPDATE dic_tablas SET base_datos_id = :base_datos_id, nombre = :nombre, descripcion = :descripcion WHERE id = :id');
         $this->db->bind(':id', $data['id']);
