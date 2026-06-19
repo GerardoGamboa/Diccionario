@@ -17,13 +17,10 @@
 <body>
   <div class="content-wrapper">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-  <div style="width: 96%; margin-left: 2%; margin-right: 2%;">
-      <a class="navbar-brand" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div style="width: 96%; margin-left: 2%; margin-right: 2%;" class="d-flex align-items-center">
+      <a class="navbar-brand me-3" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <div class="collapse navbar-collapse d-lg-flex" id="navbarsExampleDefault">
         <ul class="navbar-nav me-auto">
           <?php if(isset($_SESSION['user_id'])) : ?>
             <li class="nav-item dropdown">
