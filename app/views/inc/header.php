@@ -44,6 +44,13 @@
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/funciones">Funciones</a></li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="reports" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reportes</a>
+              <ul class="dropdown-menu" aria-labelledby="reports">
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/reportes/tablas">Diccionario de Datos</a></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/reportes/objetos">Objetos Programables</a></li>
+              </ul>
+            </li>
           <?php endif; ?>
         </ul>
 
