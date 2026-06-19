@@ -67,4 +67,33 @@
 
       return $row;
     }
+
+    // Get all users
+    public function getUsers(){
+      $this->db->query('SELECT * FROM dic_usuarios ORDER BY name ASC');
+      return $this->db->resultSet();
+    }
+
+    // Update user
+    public function updateUser($data){
+      if(!empty($data['password'])){
+        $this->db->query('UPDATE dic_usuarios SET name = :name, email = :email, password = :password WHERE id = :id');
+        $this->db->bind(':password', $data['password']);
+      } else {
+        $this->db->query('UPDATE dic_usuarios SET name = :name, email = :email WHERE id = :id');
+      }
+
+      $this->db->bind(':id', $data['id']);
+      $this->db->bind(':name', $data['name']);
+      $this->db->bind(':email', $data['email']);
+
+      return $this->db->execute();
+    }
+
+    // Delete user
+    public function deleteUser($id){
+      $this->db->query('DELETE FROM dic_usuarios WHERE id = :id');
+      $this->db->bind(':id', $id);
+      return $this->db->execute();
+    }
   }
