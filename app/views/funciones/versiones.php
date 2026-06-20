@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <a href="<?php echo URLROOT; ?>/funciones" class="btn btn-light mb-3">Volver</a>
+<?php flash('msg'); ?>
 <div class="row mb-3">
     <div class="col-md-12">
         <h1><?php echo $data['titulo']; ?>: <?php echo h($data['objeto']->nombre); ?></h1>
