@@ -3,6 +3,11 @@
     <div class="col-md-6">
         <h1>Reporte de Objetos Programables</h1>
     </div>
+    <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <a href="<?php echo URLROOT; ?>/reportes/objetos?base_datos_id=<?php echo $data['base_datos_id']; ?>&pdf=1" class="btn btn-danger">
+            <i class="fa fa-file-pdf"></i> Descargar PDF
+        </a>
+    </div>
 </div>
 
 <div class="card card-body bg-light mb-4">

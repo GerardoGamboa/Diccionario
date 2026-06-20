@@ -25,7 +25,11 @@ class Reportes extends Controller {
             'base_datos_id' => $base_datos_id
         ];
 
-        $this->view('reportes/tablas', $data);
+        if(isset($_GET['pdf'])) {
+            $this->generatePdf('reportes/tablas_pdf', $data, 'Reporte_Diccionario.pdf');
+        } else {
+            $this->view('reportes/tablas', $data);
+        }
     }
 
     public function objetos() {
@@ -45,6 +49,26 @@ class Reportes extends Controller {
             'base_datos_id' => $base_datos_id
         ];
 
-        $this->view('reportes/objetos', $data);
+        if(isset($_GET['pdf'])) {
+            $this->generatePdf('reportes/objetos_pdf', $data, 'Reporte_Objetos.pdf');
+        } else {
+            $this->view('reportes/objetos', $data);
+        }
+    }
+
+    private function generatePdf($view, $data, $filename) {
+        $dompdf = new \Dompdf\Dompdf();
+        $dompdf->set_option('isRemoteEnabled', true);
+
+        // Capture view output
+        ob_start();
+        $this->view($view, $data);
+        $html = ob_get_clean();
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream($filename, ["Attachment" => true]);
+        exit;
     }
 }
