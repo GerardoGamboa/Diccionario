@@ -14,4 +14,12 @@ class Version {
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
+
+    public function isLastVersion($objeto_id, $tipo, $consecutivo) {
+        $this->db->query('SELECT MAX(consecutivo) as max_c FROM dic_versiones WHERE objeto_id = :objeto_id AND tipo_objeto = :tipo_objeto');
+        $this->db->bind(':objeto_id', $objeto_id);
+        $this->db->bind(':tipo_objeto', $tipo);
+        $row = $this->db->single();
+        return $consecutivo == $row->max_c;
+    }
 }
