@@ -130,5 +130,20 @@ CREATE TABLE IF NOT EXISTS dic_versiones (
     FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
 );
 
+-- 9. Scripts Aplicados
+CREATE TABLE IF NOT EXISTS dic_scripts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    servidor_id INT NOT NULL,
+    fecha_aplicacion DATE NOT NULL,
+    solicitante VARCHAR(255) NOT NULL,
+    codigo TEXT NOT NULL,
+    resultado TEXT,
+    ejecutor VARCHAR(255) NOT NULL,
+    usuario_creador INT,
+    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (servidor_id) REFERENCES dic_servidores(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_creador) REFERENCES dic_usuarios(id) ON DELETE SET NULL
+);
+
 -- Insert a default user (password is '123456')
 INSERT INTO dic_usuarios (name, email, password) VALUES ('Admin', 'admin@example.com', '$2y$10$0N3205WhRuKNH8I2XVMCn.uAVRwsu6mj0En1cKyozc3Ni2BZfiCJ2');

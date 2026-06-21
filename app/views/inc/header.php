@@ -42,6 +42,8 @@
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/vistas">Vistas</a></li>
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/procedimientos">Procedimientos Almacenados</a></li>
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/funciones">Funciones</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/scripts">Scripts Aplicados</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
