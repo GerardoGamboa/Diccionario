@@ -54,4 +54,17 @@ class Reporte {
         if($base_datos_id) $this->db->bind(':base_datos_id', $base_datos_id);
         return $this->db->resultSet();
     }
+
+    public function getScriptsReporte($filtro_codigo = null) {
+        $sql = 'SELECT s.*, serv.nombre as servidorNombre
+                FROM dic_scripts s
+                INNER JOIN dic_servidores serv ON s.servidor_id = serv.id';
+        if($filtro_codigo) {
+            $sql .= ' WHERE s.codigo LIKE :filtro';
+        }
+        $sql .= ' ORDER BY s.fecha_aplicacion DESC';
+        $this->db->query($sql);
+        if($filtro_codigo) $this->db->bind(':filtro', '%' . $filtro_codigo . '%');
+        return $this->db->resultSet();
+    }
 }

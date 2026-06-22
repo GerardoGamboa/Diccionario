@@ -56,6 +56,22 @@ class Reportes extends Controller {
         }
     }
 
+    public function scripts() {
+        $filtro = isset($_GET['filtro']) ? trim($_GET['filtro']) : '';
+        $scripts = $this->reporteModel->getScriptsReporte($filtro);
+
+        $data = [
+            'scripts' => $scripts,
+            'filtro' => $filtro
+        ];
+
+        if(isset($_GET['pdf'])) {
+            $this->generatePdf('reportes/scripts_pdf', $data, 'Reporte_Scripts.pdf');
+        } else {
+            $this->view('reportes/scripts', $data);
+        }
+    }
+
     private function generatePdf($view, $data, $filename) {
         $dompdf = new \Dompdf\Dompdf();
         $dompdf->set_option('isRemoteEnabled', true);

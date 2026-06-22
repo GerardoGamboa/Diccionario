@@ -51,6 +51,8 @@
               <ul class="dropdown-menu" aria-labelledby="reports">
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/reportes/tablas">Diccionario de Datos</a></li>
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/reportes/objetos">Objetos Programables</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/reportes/scripts">Scripts Aplicados</a></li>
               </ul>
             </li>
           <?php endif; ?>
