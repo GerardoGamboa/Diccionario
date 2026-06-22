@@ -214,4 +214,63 @@
             } else die('Error');
         } else redirect('users');
     }
+
+    public function change_password(){
+        if(!isLoggedIn()) redirect('users/login');
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            $data = [
+                'current_password' => trim($_POST['current_password']),
+                'new_password' => trim($_POST['new_password']),
+                'confirm_password' => trim($_POST['confirm_password']),
+                'current_password_err' => '',
+                'new_password_err' => '',
+                'confirm_password_err' => ''
+            ];
+
+            // Validate current password
+            $user = $this->userModel->getUserById($_SESSION['user_id']);
+            if(!password_verify($data['current_password'], $user->password)){
+                $data['current_password_err'] = 'Contraseña actual incorrecta';
+            }
+
+            // Validate new password
+            if(empty($data['new_password'])){
+                $data['new_password_err'] = 'Ingrese nueva contraseña';
+            } elseif(strlen($data['new_password']) < 6){
+                $data['new_password_err'] = 'Mínimo 6 caracteres';
+            }
+
+            // Validate confirm password
+            if(empty($data['confirm_password'])){
+                $data['confirm_password_err'] = 'Confirme nueva contraseña';
+            } else {
+                if($data['new_password'] != $data['confirm_password']){
+                    $data['confirm_password_err'] = 'Contraseñas no coinciden';
+                }
+            }
+
+            if(empty($data['current_password_err']) && empty($data['new_password_err']) && empty($data['confirm_password_err'])){
+                $hashed_password = password_hash($data['new_password'], PASSWORD_DEFAULT);
+                if($this->userModel->updatePassword($_SESSION['user_id'], $hashed_password)){
+                    flash('msg', 'Contraseña actualizada con éxito');
+                    redirect('pages/index');
+                } else die('Error');
+            } else {
+                $this->view('users/change_password', $data);
+            }
+
+        } else {
+            $data = [
+                'current_password' => '',
+                'new_password' => '',
+                'confirm_password' => '',
+                'current_password_err' => '',
+                'new_password_err' => '',
+                'confirm_password_err' => ''
+            ];
+            $this->view('users/change_password', $data);
+        }
+    }
   }

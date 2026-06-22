@@ -96,4 +96,12 @@
       $this->db->bind(':id', $id);
       return $this->db->execute();
     }
+
+    // Change password
+    public function updatePassword($id, $password){
+        $this->db->query('UPDATE dic_usuarios SET password = :password WHERE id = :id');
+        $this->db->bind(':id', $id);
+        $this->db->bind(':password', $password);
+        return $this->db->execute();
+    }
   }

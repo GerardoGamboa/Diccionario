@@ -26,6 +26,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="config" role="button" data-bs-toggle="dropdown" aria-expanded="false">Configuración</a>
               <ul class="dropdown-menu" aria-labelledby="config">
+                <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users/change_password">Cambiar Contraseña</a></li>
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users">Usuarios</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">Salir</a></li>
