@@ -19,6 +19,8 @@ class Servidores extends Controller {
                 'ip' => trim($_POST['ip']),
                 'puerto' => trim($_POST['puerto']),
                 'motor' => trim($_POST['motor']),
+                'cliente' => trim($_POST['cliente']),
+                'servicio' => trim($_POST['servicio']),
                 'descripcion' => trim($_POST['descripcion']),
                 'user_id' => $_SESSION['user_id'],
                 'nombre_err' => ''
@@ -36,6 +38,8 @@ class Servidores extends Controller {
                 'ip' => '',
                 'puerto' => '',
                 'motor' => '',
+                'cliente' => '',
+                'servicio' => '',
                 'descripcion' => '',
                 'nombre_err' => ''
             ];
@@ -52,6 +56,8 @@ class Servidores extends Controller {
                 'ip' => trim($_POST['ip']),
                 'puerto' => trim($_POST['puerto']),
                 'motor' => trim($_POST['motor']),
+                'cliente' => trim($_POST['cliente']),
+                'servicio' => trim($_POST['servicio']),
                 'descripcion' => trim($_POST['descripcion']),
                 'nombre_err' => ''
             ];
@@ -70,6 +76,8 @@ class Servidores extends Controller {
                 'ip' => $servidor->ip,
                 'puerto' => $servidor->puerto,
                 'motor' => $servidor->motor,
+                'cliente' => $servidor->cliente,
+                'servicio' => $servidor->servicio,
                 'descripcion' => $servidor->descripcion,
                 'nombre_err' => ''
             ];

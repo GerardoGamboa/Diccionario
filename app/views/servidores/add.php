@@ -7,6 +7,8 @@
         <div class="mb-3"><label>IP:</label><input type="text" name="ip" class="form-control" value="<?php echo h($data['ip']); ?>"></div>
         <div class="mb-3"><label>Puerto:</label><input type="number" name="puerto" class="form-control" value="<?php echo h($data['puerto']); ?>"></div>
         <div class="mb-3"><label>Motor:</label><input type="text" name="motor" class="form-control" value="<?php echo h($data['motor']); ?>"></div>
+        <div class="mb-3"><label>Cliente:</label><input type="text" name="cliente" class="form-control" value="<?php echo h($data['cliente']); ?>"></div>
+        <div class="mb-3"><label>Servicio:</label><input type="text" name="servicio" class="form-control" value="<?php echo h($data['servicio']); ?>"></div>
         <div class="mb-3"><label>Descripción:</label><textarea name="descripcion" class="form-control"><?php echo h($data['descripcion']); ?></textarea></div>
         <input type="submit" class="btn btn-success" value="Guardar">
     </form>

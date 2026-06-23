@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS dic_servidores (
     ip VARCHAR(100),
     puerto INT,
     motor VARCHAR(100),
+    cliente VARCHAR(255),
+    servicio VARCHAR(255),
     descripcion TEXT,
     usuario_creador INT,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,

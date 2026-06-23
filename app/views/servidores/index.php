@@ -6,14 +6,15 @@
     <div class="col-md-6 text-end"><a href="<?php echo URLROOT; ?>/servidores/add" class="btn btn-primary">Agregar Servidor</a></div>
 </div>
 <table class="table table-striped">
-    <thead><tr><th>Nombre</th><th>IP</th><th>Puerto</th><th>Motor</th><th>Creador</th><th>Acciones</th></tr></thead>
+    <thead><tr><th>Nombre</th><th>IP</th><th>Motor</th><th>Cliente</th><th>Servicio</th><th>Creador</th><th>Acciones</th></tr></thead>
     <tbody>
     <?php foreach($data['servidores'] as $servidor) : ?>
         <tr>
             <td><?php echo h($servidor->nombre); ?></td>
             <td><?php echo h($servidor->ip); ?></td>
-            <td><?php echo h($servidor->puerto); ?></td>
             <td><?php echo h($servidor->motor); ?></td>
+            <td><?php echo h($servidor->cliente); ?></td>
+            <td><?php echo h($servidor->servicio); ?></td>
             <td><?php echo h($servidor->creatorName); ?></td>
             <td>
                 <a href="<?php echo URLROOT; ?>/servidores/edit/<?php echo $servidor->servidorId; ?>" class="btn btn-sm btn-warning">Editar</a>
